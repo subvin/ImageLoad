@@ -1,6 +1,3 @@
-# ImageLoad
-
-
 ## iOS webp svg  和 gif 图片的加载
 
 ### 以下给出调研中得到的三个第三方图片加载库
@@ -13,8 +10,6 @@
 | PINRemoteImage | [https://github.com/pinterest/PINRemoteImage](https://github.com/pinterest/PINRemoteImage) | gif,webp | 2756 | 264 |目前 484 次提交，常常更新，最近一次更新 2017.2.23 。|
 | YYWebImage |[https://github.com/ibireme/YYWebImage](https://github.com/ibireme/YYWebImage)| webp,gif 等 | 2610 | 473 |目前 104 次提交，更新频率低：最近一次提交 2016。10 23 日。|
 |SVGKit|[https://github.com/SVGKit/SVGKit](https://github.com/SVGKit/SVGKit)|svg | 2598 | 586 |目前 704 次提交，每个月都有提交记录，较为频繁，最近一次更新 2017.2.16。|
-
-
 
 ### 用法
 
@@ -30,7 +25,6 @@
 	imageView.frame = CGRectMake(0.0, 0.0, 100.0, 100.0);
 	[self.view addSubview:imageView];
 	
-
 ####2、	YYWebImage 
 
 ##### 2.1 cocoapods 导入    
@@ -85,18 +79,12 @@
     	}
     	[self.view addSubview:webpImageView];
 
-
-
 #### 	3、 PINRemoteImage 
-
 
 ##### 3.1 安装
 
 该库是 FLAnimatedImage 库的一个补充，
 Cocoapods ： pod 'PINRemoteImage' ，如要使用 WebP 图片 再添加 pod' PINRemoteImage/WebP' ,
-
-
-
 
 ##### 3.2 使用
 
@@ -112,11 +100,22 @@ Cocoapods ： pod 'PINRemoteImage' ，如要使用 WebP 图片 再添加 pod' PI
 
 ##### 4.2 使用
 
+加载一张本地图片：
+
 		NSString *svgName = @"1237.svg";
     	SVGKImage *svgImage = [SVGKImage imageNamed:svgName];
     	SVGKLayeredImageView *svgView = [[SVGKLayeredImageView alloc] initWithSVGKImage:svgImage];
     	svgView.backgroundColor = [UIColor clearColor];
     	svgView.frame = CGRectMake(10, 450, 0, 0);
     	[self.view addSubview:svgView];
+
+
+#### 问题点
+PINRemoteImage 和 FLAnimatedImage 按照官方给出的方式进行加载 WebP 图片，动态图依旧未能正常的加载出来，使用 SVGKit 加载 .svg 也是如此情形。
+
+
+
+### 综上所述：如果单纯只为了适配 gif 图片的加载，使用 SDWebImage 即可；如需加载 WebP 格式图片，目前的调研结果 YYWebImage 将更为有利，其它两个 PINRemoteImage 和FLAnimatedImage 在加载动图时仍存在无法正常显示动态图片的问题；用 YYWebImage 暂无出现此问题。
+
 
 
